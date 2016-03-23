@@ -1,0 +1,19 @@
+h1{
+	text-align: center;
+	padding-top: 25px;
+	padding-bottom: 20px;
+}
+
+.success{
+	color: green;     
+}
+
+.error{ 
+	color: red;
+}
+
+.message-style{
+	font-family: "Monotype Corsiva";
+	font-size:18px;
+}
+

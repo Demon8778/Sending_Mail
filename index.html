@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Email using NodeJS</title>
+	<!-- Latest compiled and minified CSS -->
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+<style>
+	h1{
+	text-align: center;
+	padding-top: 25px;
+	padding-bottom: 20px;
+}
+
+.message-style{
+	font-family: "Monotype Corsiva";
+	font-size:18px;
+}
+
+
+</style>
+
+</head>
+<body>
+	<div class="container">
+	<h1>Sending an Email Using NodeJS</h1>
+	<form class="form-horizontal">
+<fieldset>
+
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="to">To</label>  
+  <div class="col-md-5">
+  <input id="to" name="to" type="text" placeholder="Receiving Email" class="form-control input-md" required="" value="">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="subject">Subject</label>  
+  <div class="col-md-4">
+  <input id="subject" name="subject" type="text" placeholder="Subject for an Email" class="form-control input-md" required="" value="">
+   </div>
+</div>
+
+<!-- Textarea -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="content">Message</label>
+  <div class="col-md-4">                     
+    <textarea class="form-control" id="content" name="content" cols="40" rows="5" value="">Write your description here.......</textarea>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" for="button"></label>
+  <div class="col-md-4">
+    <button id="button" name="button" class="btn btn-primary">Send</button>
+  </div>
+</div>
+
+<span id="message" class="message-style"></span>
+<span id="error" class="error"></span> 
+<span id="success" class="success"></span> 
+
+</fieldset>
+</form>
+</div>
+</div> 
+</body>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+  $(document).ready(function(){
+    var from,to,subject,text;
+           $("button").click(function(){
+              $("#error").text('');       
+              $("#message").text('');
+              $("#success").text('');
+              to=$("#to").val();
+              subject=$("#subject").val();
+              text=$("#content").val();
+                         if(to == "" || subject== "" || text == "")
+                                {
+                                     alert("Please fill all textbox");
+                                     $('#to').focus();
+                                     return false;
+                                }
+                          else
+                                {
+                                   $("#message").text("Sending E-mail...Please wait");
+                                   $.get( "http://localhost:3000/send",{to:to,subject:subject,text:text}, function(data){
+
+                                   });
+
+                                   
+                                }
+    });
+});
+</script>
+</html>
